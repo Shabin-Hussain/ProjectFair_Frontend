@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom'
 
 
 
-function Auth() {
+function Auth({register}) {
   return (
    
-      <div className='container-fluid justify-content-center align-items-center flex-column ' style={{ height: '100vh' }}>
+      <div className='container-fluid d-flex justify-content-center align-items-center flex-column ' style={{ height: '100vh' }}>
         <div className='container w-75'>
           <Link to={'/'} className='text-warning fs-5' style={{ textDecoration: 'none' }}><FontAwesomeIcon icon={faArrowLeft} className='me-3' />Back to Home</Link>
 
@@ -23,13 +23,13 @@ function Auth() {
               </Col>
               <Col sm={12} md={6} className='d-flex justify-content-center align-items-center flex-column text-white'>
                  <h3><FontAwesomeIcon className='me-3' icon={faStackOverflow} />Project Fair</h3>
-                 <h5>Sign Up to your Account</h5>
-                 <h5>Sign In to your Account</h5>
+               {register?  <h5>Sign Up to your Account</h5> :
+                 <h5>Sign In to your Account</h5>}
 
                  <form className='mt-4 w-75'>
-                  <div className='mb-3'>
+                 {register&& <div className='mb-3'>
                     <input type="text" placeholder='Username' className='form-control'/>
-                  </div>
+                  </div>}
                   <div className='mb-3'>
                      <input type="mail" placeholder='Email' className='form-control'/>
                   </div>
@@ -37,10 +37,14 @@ function Auth() {
                      <input type="password" placeholder='Password' className='form-control'/>
                   </div>
                   <div className='mb-3'>
-                    <button className='btn btn-warning w-100'>Register</button>
-                    <p>Already a User?Click here to <Link to={'/login'} className='text-danger'>login</Link></p>
-                    <button className='btn btn-warning w-100'>Login</button>
-                    <p>New User?Click here to <Link to={'/register'} className='text-danger'>register</Link></p>
+                   {register? <div>
+                      <button className='btn btn-warning w-100'>Register</button>
+                      <p className='mt-2'>Already a User?Click here to <Link to={'/login'} className='text-danger'>login</Link></p>
+                    </div>:
+                    <div>
+                      <button className='btn btn-warning w-100'>Login</button>
+                      <p className='mt-2'>New User?Click here to <Link to={'/register'} className='text-danger'>register</Link></p>
+                    </div>}
                   </div>
 
                  </form>
