@@ -1,4 +1,4 @@
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import Collapse from 'react-bootstrap/Collapse';
@@ -11,10 +11,14 @@ function Profile() {
     const [open, setOpen] = useState(false);
   return (
     <>
-    <div className='mx-3 p-4 shadow rounded'>
+    <div className='mx-3 p-4 shadow rounded' onMouseEnter={()=>setOpen(true)} /* onMouseLeave={()=>setOpen(false)} */>
       <div className='d-flex justify-content-between mt-3'>
         <h4 className='text-success'>Profile</h4>
-        <button type='button' onClick={() => setOpen(!open)} className='btn btn-outline-info'><FontAwesomeIcon icon={faAngleDown} /></button>
+        <button type='button' onClick={() => setOpen(!open)} className='btn btn-outline-info'>
+          {!open ?<FontAwesomeIcon icon={faAngleDown} /> :
+          <FontAwesomeIcon icon={faAngleUp} />}
+          </button>
+        
 
       </div>
 
