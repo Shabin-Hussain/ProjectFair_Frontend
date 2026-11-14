@@ -1,7 +1,7 @@
 import { faStackOverflow } from '@fortawesome/free-brands-svg-icons'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, { useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
@@ -9,6 +9,14 @@ import { Link } from 'react-router-dom'
 
 
 function Auth({register}) {
+  const[userDetails,setUserDetails] = useState({
+    username:"",
+    email:"",
+    password:""
+  })
+
+  console.log(userDetails);
+  
   return (
    
       <div className='container-fluid d-flex justify-content-center align-items-center flex-column ' style={{ height: '100vh' }}>
@@ -28,13 +36,13 @@ function Auth({register}) {
 
                  <form className='mt-4 w-75'>
                  {register&& <div className='mb-3'>
-                    <input type="text" placeholder='Username' className='form-control'/>
+                    <input type="text" placeholder='Username' className='form-control' onChange={(e)=>setUserDetails({...userDetails,username:e.target.value})}/>
                   </div>}
                   <div className='mb-3'>
-                     <input type="mail" placeholder='Email' className='form-control'/>
+                     <input type="mail" placeholder='Email' className='form-control' onChange={(e)=>setUserDetails({...userDetails,email:e.target.value})}/>
                   </div>
                   <div className='mb-3'>
-                     <input type="password" placeholder='Password' className='form-control'/>
+                     <input type="password" placeholder='Password' className='form-control' onChange={(e)=>setUserDetails({...userDetails,password:e.target.value})}/>
                   </div>
                   <div className='mb-3'>
                    {register? <div>
