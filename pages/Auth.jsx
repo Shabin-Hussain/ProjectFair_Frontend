@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { registerApi } from '../services/allApi'
 
 
 
@@ -16,6 +17,21 @@ function Auth({register}) {
   })
 
   console.log(userDetails);
+
+  const handleRegister = async()=>{
+
+    const{username,email,password} = userDetails
+
+    if(!username || !email || !password){
+        alert('please fill the form completely')
+    }
+    else{
+      const result = await registerApi(userDetails)
+      console.log(result);
+      
+    }
+
+  }
   
   return (
    
@@ -46,7 +62,7 @@ function Auth({register}) {
                   </div>
                   <div className='mb-3'>
                    {register? <div>
-                      <button className='btn btn-warning w-100'>Register</button>
+                      <button className='btn btn-warning w-100' onClick={handleRegister}>Register</button>
                       <p className='mt-2'>Already a User?Click here to <Link to={'/login'} className='text-danger'>login</Link></p>
                     </div>:
                     <div>
